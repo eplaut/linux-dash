@@ -1,56 +1,117 @@
-# linux-dash (Beta)
+<br/>
+<h1 align="center">
+  linux-dash
+</h1>
 
-A low-overhead monitoring web dashboard for a GNU/Linux machine. Simply drop-in
-the app and go!
+<p align="center">
+  A simple, low-overhead web dashboard for Linux
+</p>
 
-[**View Demo**](http://afaq.dreamhosters.com/linux-dash/) | [**View Features**](#features) | [**Installation Instructions**](#installation) | [**News**](https://github.com/afaqurk/linux-dash/news) | [**Documentation**](https://github.com/afaqurk/linux-dash/wiki)
+<p align="center">
+  <strong>
+    <a href="http://linuxdash.afaqtariq.com"><i>Demo</i></a> &nbsp;|&nbsp;
+    <a href="#features"><i>Features</i></a> &nbsp;|&nbsp;
+    <a href="#installation">
+      <i>Installation</i></a> &nbsp;|&nbsp;
+    <a href="#support"><i>Support</i></a>
+  </strong>
+</p>
 
-![Demonstration](http://afaq.dreamhosters.com/linux-dash.PNG)
+<p align="center">
+  <a href="https://gitter.im/afaqurk/linux-dash">
+    <img 
+      src="https://badges.gitter.im/gitterHQ/gitter.png" 
+      alt="Linux Dash Gitter chat">
+  </a>
+</p>
+
+<br/>
+<p align="center">
+  <a href="http://linuxdash.afaqtariq.com">
+    <img 
+      width="80%"
+      alt="Linux Dash screenshot" 
+      src="http://i.imgur.com/tehGyrQ.gif">
+  </a>
+</p>
+
+<br/>
 
 ## Features
-* A beautiful web-based dashboard for monitoring server info
-* Live, on-demand monitoring of RAM, Load, Uptime, Disk Allocation, Users and many more system stats
-* Drop-in install for servers with Apache2/nginx + PHP
-* Click and drag to re-arrange widgets
-* Support for wide range of linux server flavors [(See Support section)](#support)
+* A beautiful, simple web-based dashboard for monitoring a linux server
+* Only ~1MB on disk! *(.git removed)*
+* Live graphs, refresh-able widgets, and a growing # of supported modules
+* Drop-in installation for PHP, Node.js, Python, and Go 
 
 ## Installation
 
-1. Make sure you have `php5-json` installed and enabled
-2. Download the zip/repo/package
-3. Place it in `/var/www/` (for Apache); For nginx setup, see [this gist](https://gist.github.com/sergeifilippov/8909839) by [@sergeifilippov](https://github.com/sergeifilippov)
-4. Optional: Secure access to the page via `.htaccess` or method of your choice
- 
+#### Step 1: Download Linux Dash
 
+Clone the git repo
+```sh
+git clone https://github.com/afaqurk/linux-dash.git
+```
 
-**Please note: If you would like to limit access to the webpage, please add
-`.htaccess` or other security measure.**
+Or download it **[here](https://github.com/afaqurk/linux-dash/archive/master.zip)**.
+
+#### Step 2: Secure Linux Dash
+
+Linux Dash does not provide any security or authentication features.
+
+**It is strongly recommended** that all Linux Dash installations be protected via a security measure of your choice.
+
+#### Step 3: Start Linux Dash
+<h6 align="center">
+Linux Dash can be run in: <u>Node.js</u>, PHP, Go, or Python. 
+<br/>
+<sub>
+* Node.js is the recommended platform since it has native support for websockets and fast I/O.
+</sub>
+</h6>
+
+First, navigate to the `linux-dash` folder you downloaded or cloned.
+
+Then, refer to the section for your preferred platform:
+
+##### Node.js
+
+Install NPM dependencies
+```
+npm install
+```
+
+Start Linux Dash 
+```
+node server/
+```
+
+<small>Default port for Linux Dash is 80. You may change this with the `LINUX_DASH_SERVER_PORT` environment variable (eg. `LINUX_DASH_SERVER_PORT=8080 node server`) or editing the [server/index.js on line 9](https://github.com/afaqurk/linux-dash/blob/master/server/index.js#L9)</small>
+
+##### PHP
+1. Make sure you have the `exec`, `shell_exec`, and `escapeshellarg` functions enabled
+2. Restart your web server (Apache, nginx, etc.) 
+  - For PHP + Apache setup follow the [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-linux-dash-on-ubuntu-14-04).
+  - For help with nginx setup, see [this gist](https://gist.github.com/sergeifilippov/8909839) by [@sergeifilippov](https://github.com/sergeifilippov).
+
+##### Go
+Go to the `linux-dash/server` folder and run 
+```
+go run index.go
+```
+
+To build a binary, run `go build && ./server -h`. See [@tehbilly](https://github.com/sergeifilippov)'s notes [here](https://github.com/afaqurk/linux-dash/pull/281) for binary usage options
+
+##### Python 2
+Run `./python-server.py` will run a server on port 80 which is the default. You can provide a specific port via the `--port` flag.
 
 ## Support
 
-*The information listed here is currently limited and will expand shortly.*
+For help with general setup and configuration issues please use the [Linux Dash Gitter chat room](https://gitter.im/afaqurk/linux-dash).
 
-* OS
-    * Arch
-    * Debian 6, 7
-    * Ubuntu 11.04+
-    * Linux Mint 16+
-* Apache 2
-* Nginx
-* PHP 5
-* Modern browsers
-
-## News
-* [https://news.ycombinator.com/item?id=7125153](https://news.ycombinator.com/item?id=7125153)
-* [http://www.linuxpromagazine.com/Online/Blogs/Productivity-Sauce/Monitor-Your-server-with-Linux-Dash](http://www.linuxpromagazine.com/Online/Blogs/Productivity-Sauce/Monitor-Your-server-with-Linux-Dash)
-* [http://www.lafermeduweb.net/billet/linux-dash-un-dashboard-simple-pour-monitorer-votre-serveur-linux-1698.html](http://www.lafermeduweb.net/billet/linux-dash-un-dashboard-simple-pour-monitorer-votre-serveur-linux-1698.html)
-* [http://linuxundich.de/ubuntu/linux-dash-als-alternative-zu-monitoring-mittels-phpsysinfo/](http://linuxundich.de/ubuntu/linux-dash-als-alternative-zu-monitoring-mittels-phpsysinfo/)
-* [http://www.html.it/articoli/monitoring-di-un-server-linux-con-linux-dash/](http://www.html.it/articoli/monitoring-di-un-server-linux-con-linux-dash/)
-* [https://www.youtube.com/watch?v=3gb3z-a7XfA](https://www.youtube.com/watch?v=3gb3z-a7XfA)
-* [http://www.ubuntugeek.com/linux-dash-a-low-overhead-monitoring-web-dashboard-for-a-gnulinux-machine.html](http://www.ubuntugeek.com/linux-dash-a-low-overhead-monitoring-web-dashboard-for-a-gnulinux-machine.html)
-* [http://www.oschina.net/p/linux-dash](http://www.oschina.net/p/linux-dash)
-
-## Credits:
-* [Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/)
-* [Bootstrap](http://getbootstrap.com)
-* [Font Awesome](http://fontawesome.io/)
+The following distributions are supported:
+* Arch
+* Debian 6,7
+* Ubuntu 11.04+
+* Linux Mint 16+
+* CentOS 5, 6
+* openSUSE
